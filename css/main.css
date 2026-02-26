@@ -4,6 +4,7 @@
    IMPORTS - Must be at the top
    ================================ */
 @import './normalize.css';
+@import './components.css';
 @import './responsive.css';
 
 /* ================================
