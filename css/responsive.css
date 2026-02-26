@@ -1,0 +1,419 @@
+/**
+ * Responsive Design - Mobile-First Approach
+ * Ensures the site works perfectly on all devices
+ */
+
+/* ================================
+   MOBILE OPTIMIZATIONS (Base: < 480px)
+   ================================ */
+
+/* Ensure touch-friendly tap targets */
+@media (max-width: 479px) {
+  a, button, .button {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Adjust font sizes for small screens */
+  h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  h4 {
+    font-size: clamp(1.3rem, 5vw, 1.75rem);
+  }
+
+  h5 {
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+  }
+
+  /* Improve spacing on small screens */
+  .container {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  /* Stack navigation vertically */
+  .nav-menu_container {
+    flex-direction: column;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  /* Optimize video backgrounds for mobile */
+  .hero-video video {
+    object-position: center center;
+  }
+
+  /* Optimize countdown on mobile */
+  .countdown-countainer {
+    font-size: 0.9em;
+  }
+
+  .countdown-countainer h1 {
+    font-size: 2rem;
+  }
+
+  /* Ensure images don't overflow */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ================================
+   TABLET LANDSCAPE (768px - 991px)
+   ================================ */
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  /* Adjust grid columns for tablets */
+  .row .col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .col[data-wf--grid-column--settings-column-size="6-12"],
+  .col[data-wf--grid-column--settings-column-size="4-12"] {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  /* Optimize navigation for tablets */
+  .nav-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--_color---secondary--tajon-black);
+    z-index: 999;
+    padding: 120px 6vw 60px;
+    overflow-y: auto;
+  }
+
+  .nav-menu.active {
+    display: block;
+  }
+
+  .nav-menu_btn {
+    display: flex !important;
+  }
+}
+
+/* ================================
+   DESKTOP (992px+)
+   ================================ */
+
+@media (min-width: 992px) {
+  /* Ensure desktop navigation is visible */
+  .nav-menu {
+    display: flex !important;
+    position: static;
+    height: auto;
+    background: transparent;
+    padding: 0;
+  }
+
+  .nav-menu_container {
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 2.5rem);
+  }
+
+  .nav-menu_btn {
+    display: none !important;
+  }
+
+  /* Optimize grid for desktop */
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(var(--_layout---grid--gap-main) / -2);
+    margin-right: calc(var(--_layout---grid--gap-main) / -2);
+  }
+
+  .col {
+    padding-left: calc(var(--_layout---grid--gap-main) / 2);
+    padding-right: calc(var(--_layout---grid--gap-main) / 2);
+  }
+
+  /* Enable hover effects on desktop */
+  .button:hover,
+  .nav-link:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Parallax only on desktop for performance */
+  .parallax-1,
+  .parallax-bg {
+    will-change: transform;
+  }
+}
+
+/* ================================
+   LARGE DESKTOP (1440px+)
+   ================================ */
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: var(--_components---container--max-width);
+  }
+
+  /* Limit hero video height on very large screens */
+  .hero-video {
+    max-height: 100vh;
+  }
+}
+
+/* ================================
+   EXTRA LARGE DESKTOP (1920px+)
+   ================================ */
+
+@media (min-width: 1920px) {
+  /* Prevent excessive scaling on very large screens */
+  h1 {
+    font-size: clamp(3rem, 5vw, 6rem);
+  }
+
+  h2 {
+    font-size: clamp(2.5rem, 4vw, 5rem);
+  }
+
+  .container {
+    max-width: 1600px;
+  }
+}
+
+/* ================================
+   LANDSCAPE MOBILE (max-height: 500px)
+   ================================ */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  /* Optimize hero for landscape mobile */
+  .hero {
+    min-height: 100vh;
+  }
+
+  .hero-video {
+    height: 100vh;
+  }
+
+  /* Adjust navigation for landscape */
+  .nav {
+    padding: 0.5rem 0;
+  }
+
+  /* Reduce vertical spacing */
+  .section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* Make mobile menu scrollable */
+  .nav-menu {
+    padding-top: 80px;
+  }
+}
+
+/* ================================
+   PRINT STYLES
+   ================================ */
+
+@media print {
+  /* Hide interactive elements */
+  .nav-menu_btn,
+  video,
+  .modal,
+  button,
+  .button {
+    display: none !important;
+  }
+
+  /* Ensure links are visible */
+  a {
+    text-decoration: underline;
+  }
+
+  /* Optimize colors for printing */
+  body {
+    background: white;
+    color: black;
+  }
+
+  /* Add URL after links */
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+
+  /* Page breaks */
+  section {
+    page-break-inside: avoid;
+  }
+
+  img {
+    page-break-inside: avoid;
+  }
+}
+
+/* ================================
+   HIGH CONTRAST MODE
+   ================================ */
+
+@media (prefers-contrast: high) {
+  * {
+    border-color: currentColor !important;
+  }
+
+  .button {
+    border: 2px solid currentColor;
+  }
+
+  a:focus,
+  button:focus {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+  }
+}
+
+/* ================================
+   DARK MODE PREFERENCES
+   ================================ */
+
+@media (prefers-color-scheme: dark) {
+  /* Already handled by CSS variables in main stylesheet */
+  /* Additional overrides can go here if needed */
+}
+
+/* ================================
+   REDUCED MOTION
+   ================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable parallax */
+  .parallax-1,
+  .parallax-bg {
+    transform: none !important;
+  }
+
+  /* Ensure animations are visible instantly */
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ================================ */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Remove hover effects on touch devices */
+  .button:hover,
+  .nav-link:hover,
+  a:hover {
+    opacity: 1;
+  }
+
+  /* Add active states instead */
+  .button:active,
+  .nav-link:active,
+  a:active {
+    opacity: 0.7;
+  }
+
+  /* Increase tap target sizes */
+  button,
+  a,
+  .button {
+    min-height: 44px;
+    padding: 0.75rem 1.5rem;
+  }
+
+  /* Disable parallax on touch devices for performance */
+  .parallax-1,
+  .parallax-bg {
+    transform: none !important;
+  }
+}
+
+/* ================================
+   FOLDABLE/FLEXIBLE SCREENS
+   ================================ */
+
+@media (horizontal-viewport-segments: 2) {
+  /* Optimize layout for foldable devices */
+  .container {
+    max-width: 100%;
+  }
+}
+
+/* ================================
+   SAFE AREA INSETS (iPhone Notch, etc.)
+   ================================ */
+
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+
+  .nav {
+    padding-top: max(0px, env(safe-area-inset-top));
+  }
+
+  .page-main {
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}
+
+/* ================================
+   ORIENTATION CHANGE HANDLING
+   ================================ */
+
+@media (orientation: portrait) {
+  /* Portrait-specific styles */
+  .hero-video video {
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+@media (orientation: landscape) {
+  /* Landscape-specific styles */
+  .hero-video video {
+    object-fit: cover;
+    object-position: center center;
+  }
+}
